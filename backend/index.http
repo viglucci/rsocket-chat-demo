@@ -1,0 +1,38 @@
+### get book
+GET http://localhost:8080/book/book-1
+
+### get author
+GET http://localhost:8080/author/author-1
+
+### RSocket request
+RSOCKET findBook
+Host: ws://localhost:8080/rsocket
+Content-Type: application/json
+
+"book-1"
+
+### GraphQL over HTTP
+GRAPHQL http://localhost:8080/graphql
+Content-Type: application/graphql
+
+query {
+    findBook(id: "book-1") { id name }
+}
+
+### GraphQL over WebSocket
+GRAPHQLWS localhost:8080/graphql
+Content-Type: application/graphql
+
+query {
+    findBook(id: "book-1") { id name }
+}
+
+### GraphQL over RSocket
+GRAPHQLRS graphql
+Host: ws://localhost:8080/rsocket
+Content-Type: application/graphql
+
+query {
+    findBook(id: "book-1") { id name }
+}
+
