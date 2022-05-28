@@ -1,4 +1,4 @@
-package org.mvnsearch.restgraphqlrsocket;
+package com.example.chatdemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

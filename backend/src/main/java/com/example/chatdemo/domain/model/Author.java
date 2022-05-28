@@ -1,4 +1,4 @@
-package org.mvnsearch.restgraphqlrsocket.domain.model;
+package com.example.chatdemo.domain.model;
 
 
 public class Author {
