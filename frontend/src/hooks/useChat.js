@@ -18,7 +18,7 @@ export default function useChat(onMessage) {
         }
 
         const map = new Map();
-        map.set(WellKnownMimeType.MESSAGE_RSOCKET_ROUTING, encodeRoute("EchoChannel"));
+        map.set(WellKnownMimeType.MESSAGE_RSOCKET_ROUTING, encodeRoute("ChatChannel"));
         const compositeMetaData = encodeCompositeMetadata(map);
 
         const stream = rsocket.requestChannel({
@@ -38,9 +38,13 @@ export default function useChat(onMessage) {
                         `payload[data: ${payload.data}; metadata: ${payload.metadata}]|${isComplete}`
                     );
                     if (onMessage) {
+                        const decoded = payload.data.toString();
+                        const message = JSON.parse(decoded);
                         onMessage({
-                            id: basicUUID(),
-                            message: payload.data.toString()
+                            id: message.uuid,
+                            message: message.text,
+                            timestampEpochMillis: message.timestampEpochMillis,
+                            username: message.username
                         });
                     }
                 },

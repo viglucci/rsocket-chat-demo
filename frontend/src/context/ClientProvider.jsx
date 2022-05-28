@@ -11,6 +11,7 @@ const createRSocket = async ({ url }) => {
             url,
         }),
         setup: {
+            dataMimeType: WellKnownMimeType.APPLICATION_JSON.toString(),
             metadataMimeType: WellKnownMimeType.MESSAGE_RSOCKET_COMPOSITE_METADATA.toString()
         }
     });
